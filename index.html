@@ -12,7 +12,7 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" href="icons/alarm.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
   </head>
   <body>
     <header class="alarm-bar">
@@ -72,6 +72,12 @@
             <label for="breakfastEnabled">Breakfast</label>
             <input id="breakfastDuration" name="breakfastDuration" type="number" min="0" max="180" step="5" value="20" inputmode="numeric">
           </div>
+
+          <div class="row">
+            <input id="extraTimeEnabled" name="extraTimeEnabled" type="checkbox" checked>
+            <label for="extraTimeEnabled">Extra time</label>
+            <input id="extraTimeDuration" name="extraTimeDuration" type="number" min="0" max="180" step="5" value="10" inputmode="numeric">
+          </div>
         </div>
 
         <fieldset class="segmented" aria-label="Transport mode">
@@ -116,6 +122,6 @@
       </form>
     </main>
 
-    <script src="app.js?v=5"></script>
+    <script src="app.js?v=6"></script>
   </body>
 </html>

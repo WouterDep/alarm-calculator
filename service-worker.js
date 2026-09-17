@@ -1,9 +1,9 @@
-const CACHE_NAME = "alarm-calculator-v5";
+const CACHE_NAME = "alarm-calculator-v6";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=5",
-  "./app.js?v=5",
+  "./styles.css?v=6",
+  "./app.js?v=6",
   "./manifest.webmanifest",
   "./icons/alarm.svg",
   "./icons/apple-touch-icon.png",

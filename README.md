@@ -53,6 +53,7 @@ The alarm is always for the next weekday morning. Friday night plans Monday.
 - Shower duration, or a wash duration when shower is off
 - Shaving toggle and duration
 - Breakfast toggle and duration
+- Extra time buffer (default 10 minutes)
 - Transport mode: e-bike, racing bike, or car
 - Travel duration for each transport mode
 

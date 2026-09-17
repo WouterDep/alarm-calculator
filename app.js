@@ -25,6 +25,8 @@ const defaults = {
   shavingDuration: 5,
   breakfastEnabled: true,
   breakfastDuration: 20,
+  extraTimeEnabled: true,
+  extraTimeDuration: 10,
   transportMode: "ebike",
   durationEbike: 30,
   durationRacingBike: 25,
@@ -70,11 +72,12 @@ function calculate(settings, now = new Date()) {
   const hygiene = settings.showerEnabled ? settings.showerDuration : settings.washingDuration;
   const shaving = settings.shavingEnabled ? settings.shavingDuration : 0;
   const breakfast = settings.breakfastEnabled ? settings.breakfastDuration : 0;
+  const extra = settings.extraTimeEnabled ? settings.extraTimeDuration : 0;
   const transport = getTransportDuration(settings);
-  const total = settings.baselineDuration + hygiene + shaving + breakfast + transport;
+  const total = settings.baselineDuration + hygiene + shaving + breakfast + extra + transport;
   const alarm = fromMinutes(toMinutes(etaWork) - total);
 
-  return { alarm, total, hygiene, shaving, breakfast, transport, day, scheduleType, etaWork, date };
+  return { alarm, total, hygiene, shaving, breakfast, extra, transport, day, scheduleType, etaWork, date };
 }
 
 function loadSettings() {
@@ -159,6 +162,8 @@ function boot() {
       shavingDuration: getNumber(formData, "shavingDuration"),
       breakfastEnabled: formData.has("breakfastEnabled"),
       breakfastDuration: getNumber(formData, "breakfastDuration"),
+      extraTimeEnabled: formData.has("extraTimeEnabled"),
+      extraTimeDuration: getNumber(formData, "extraTimeDuration"),
       transportMode: formData.get("transportMode") || defaults.transportMode,
       durationEbike: getNumber(formData, "durationEbike"),
       durationRacingBike: getNumber(formData, "durationRacingBike"),
