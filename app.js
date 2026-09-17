@@ -25,7 +25,7 @@ const defaults = {
   shavingDuration: 5,
   breakfastEnabled: true,
   breakfastDuration: 20,
-  extraTimeEnabled: true,
+  extraTimeEnabled: false,
   extraTimeDuration: 10,
   transportMode: "ebike",
   durationEbike: 30,

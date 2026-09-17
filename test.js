@@ -23,7 +23,7 @@ const settings = {
   shavingDuration: 5,
   breakfastEnabled: true,
   breakfastDuration: 20,
-  extraTimeEnabled: true,
+  extraTimeEnabled: false,
   extraTimeDuration: 10,
   transportMode: "ebike",
   durationEbike: 30,
@@ -35,18 +35,18 @@ const showered = calculate(settings, thursday);
 assert.strictEqual(showered.day, "Friday");
 assert.strictEqual(showered.etaWork, "09:00");
 assert.strictEqual(showered.hygiene, 15);
-assert.strictEqual(showered.extra, 10);
-assert.strictEqual(showered.total, 95);
-assert.strictEqual(showered.alarm, "07:25");
+assert.strictEqual(showered.extra, 0);
+assert.strictEqual(showered.total, 85);
+assert.strictEqual(showered.alarm, "07:35");
 
 const washed = calculate({ ...settings, showerEnabled: false }, thursday);
 assert.strictEqual(washed.hygiene, 10);
-assert.strictEqual(washed.total, 90);
-assert.strictEqual(washed.alarm, "07:30");
+assert.strictEqual(washed.total, 80);
+assert.strictEqual(washed.alarm, "07:40");
 
-const noBuffer = calculate({ ...settings, extraTimeEnabled: false }, thursday);
-assert.strictEqual(noBuffer.extra, 0);
-assert.strictEqual(noBuffer.total, 85);
-assert.strictEqual(noBuffer.alarm, "07:35");
+const withBuffer = calculate({ ...settings, extraTimeEnabled: true }, thursday);
+assert.strictEqual(withBuffer.extra, 10);
+assert.strictEqual(withBuffer.total, 95);
+assert.strictEqual(withBuffer.alarm, "07:25");
 
 console.log("ok");
