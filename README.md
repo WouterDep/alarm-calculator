@@ -7,7 +7,7 @@ A fully local offline PWA for calculating when to set an alarm so you arrive at 
 Open the live app on your phone:
 
 ```text
-https://GITHUB_USER.github.io/alarm-calculator/
+https://wouterdep.github.io/alarm-calculator/
 ```
 
 After the first load, add it to your home screen. The app then works offline. Settings stay on that phone.
