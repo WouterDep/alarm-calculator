@@ -2,214 +2,120 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f4ec">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1f2428">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Alarm">
     <title>Alarm Calculator</title>
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" href="icons/alarm.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=5">
   </head>
   <body>
+    <header class="alarm-bar">
+      <strong id="alarmTime">--:--</strong>
+      <p id="summaryText">Tomorrow morning</p>
+      <button class="icon-button" id="copyButton" type="button" aria-label="Copy alarm time">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </header>
+
     <main class="app-shell">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Local alarm planner</p>
-          <h1>Alarm Calculator</h1>
-        </div>
-        <div class="result-badge" aria-live="polite">
-          <span>Alarm</span>
-          <strong id="alarmTime">--:--</strong>
-        </div>
-      </header>
-
-      <section class="summary-panel" aria-labelledby="summaryTitle">
-        <div>
-          <h2 id="summaryTitle">Tomorrow morning</h2>
-          <p id="summaryText">Configure your routine to calculate the alarm time.</p>
-        </div>
-        <button class="icon-button" id="copyButton" type="button" aria-label="Copy alarm time">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-        </button>
-      </section>
-
-      <form class="planner" id="plannerForm">
-        <section class="panel" aria-labelledby="workTitle">
-          <div class="section-heading">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="7" width="18" height="13" rx="2"></rect>
-              <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              <path d="M3 13h18"></path>
-            </svg>
-            <h2 id="workTitle">Work</h2>
-          </div>
-
-          <div class="work-grid">
-            <label class="field">
-              <span>Target date</span>
-              <input id="targetDate" name="targetDate" type="date">
-            </label>
-            <fieldset class="segmented schedule-toggle" aria-label="Week type">
-              <label>
-                <input type="radio" name="scheduleType" value="regular" checked>
-                <span>Regular</span>
-              </label>
-              <label>
-                <input type="radio" name="scheduleType" value="vacation">
-                <span>School vacation</span>
-              </label>
-            </fieldset>
-            <div class="calendar-status">
-              <span>Detected calendar</span>
-              <small id="holidayName">No school holiday detected</small>
-            </div>
-          </div>
-        </section>
-
-        <details class="panel schedule-details">
-          <summary>
-            <span class="section-heading">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 2v4"></path>
-                <path d="M16 2v4"></path>
-                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-                <path d="M3 10h18"></path>
-              </svg>
-              <span id="scheduleTitle">Weekly schedules</span>
-            </span>
-            <span class="chevron" aria-hidden="true">Show</span>
-          </summary>
-
-          <div class="schedule-columns">
-            <fieldset class="schedule-card">
-              <legend>Regular week</legend>
-              <div class="week-grid">
-                <label><span>Monday</span><input name="regularMonday" type="time" step="300" value="09:00"></label>
-                <label><span>Tuesday</span><input name="regularTuesday" type="time" step="300" value="09:00"></label>
-                <label><span>Wednesday</span><input name="regularWednesday" type="time" step="300" value="09:00"></label>
-                <label><span>Thursday</span><input name="regularThursday" type="time" step="300" value="09:00"></label>
-                <label><span>Friday</span><input name="regularFriday" type="time" step="300" value="09:00"></label>
-                <label><span>Saturday</span><input name="regularSaturday" type="time" step="300" value="09:00"></label>
-                <label><span>Sunday</span><input name="regularSunday" type="time" step="300" value="09:00"></label>
-              </div>
-            </fieldset>
-
-            <fieldset class="schedule-card">
-              <legend>School vacation week</legend>
-              <div class="week-grid">
-                <label><span>Monday</span><input name="vacationMonday" type="time" step="300" value="09:30"></label>
-                <label><span>Tuesday</span><input name="vacationTuesday" type="time" step="300" value="09:30"></label>
-                <label><span>Wednesday</span><input name="vacationWednesday" type="time" step="300" value="09:30"></label>
-                <label><span>Thursday</span><input name="vacationThursday" type="time" step="300" value="09:30"></label>
-                <label><span>Friday</span><input name="vacationFriday" type="time" step="300" value="09:30"></label>
-                <label><span>Saturday</span><input name="vacationSaturday" type="time" step="300" value="09:30"></label>
-                <label><span>Sunday</span><input name="vacationSunday" type="time" step="300" value="09:30"></label>
-              </div>
-            </fieldset>
-          </div>
-        </details>
-
-        <section class="panel" aria-labelledby="routineTitle">
-          <div class="section-heading">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 4h16"></path>
-              <path d="M6 4v8a6 6 0 0 0 12 0V4"></path>
-              <path d="M8 20h8"></path>
-              <path d="M12 18v2"></path>
-            </svg>
-            <h2 id="routineTitle">Routine</h2>
-          </div>
-
-          <div class="routine-grid">
-            <div class="routine-tile">
-              <input id="showerEnabled" name="showerEnabled" type="checkbox" checked>
-              <label class="tile-main" for="showerEnabled">
-                <strong>Shower</strong>
-                <small>Include shower time</small>
-              </label>
-              <label class="tile-duration">
-                <span>Minutes</span>
-                <input id="showerDuration" name="showerDuration" type="number" min="0" max="180" step="5" value="15">
-              </label>
-            </div>
-
-            <div class="routine-tile">
-              <input id="shavingEnabled" name="shavingEnabled" type="checkbox">
-              <label class="tile-main" for="shavingEnabled">
-                <strong>Shaving</strong>
-                <small>Include shaving time</small>
-              </label>
-              <label class="tile-duration">
-                <span>Minutes</span>
-                <input id="shavingDuration" name="shavingDuration" type="number" min="0" max="180" step="5" value="5">
-              </label>
-            </div>
-
-            <div class="routine-tile">
-              <input id="breakfastEnabled" name="breakfastEnabled" type="checkbox" checked>
-              <label class="tile-main" for="breakfastEnabled">
-                <strong>Breakfast</strong>
-                <small>Eating at home</small>
-              </label>
-              <label class="tile-duration">
-                <span>Minutes</span>
-                <input id="breakfastDuration" name="breakfastDuration" type="number" min="0" max="180" step="5" value="20">
-              </label>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" aria-labelledby="transportTitle">
-          <div class="section-heading">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="6" cy="17" r="3"></circle>
-              <circle cx="18" cy="17" r="3"></circle>
-              <path d="M8.5 17h5l-3-7h3l2 4"></path>
-              <path d="M6 17l4-7"></path>
-            </svg>
-            <h2 id="transportTitle">Transport</h2>
-          </div>
-
-          <fieldset class="segmented" aria-label="Transport mode">
+      <form id="plannerForm">
+        <div class="week-row">
+          <fieldset class="segmented" aria-label="Week type">
             <label>
-              <input type="radio" name="transportMode" value="ebike" checked>
-              <span>E-bike</span>
+              <input type="radio" name="scheduleType" value="regular" checked>
+              <span>Regular</span>
             </label>
             <label>
-              <input type="radio" name="transportMode" value="racingBike">
-              <span>Racing bike</span>
-            </label>
-            <label>
-              <input type="radio" name="transportMode" value="car">
-              <span>Car</span>
+              <input type="radio" name="scheduleType" value="vacation">
+              <span>Vacation</span>
             </label>
           </fieldset>
+          <button class="icon-button" id="settingsButton" type="button" aria-label="Edit weekday arrival times">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path>
+            </svg>
+          </button>
+        </div>
 
-          <div class="transport-times">
-            <label class="duration-field">
-              <span>E-bike</span>
-              <input id="durationEbike" name="durationEbike" type="number" min="0" max="240" step="5" value="30">
-            </label>
-            <label class="duration-field">
-              <span>Racing bike</span>
-              <input id="durationRacingBike" name="durationRacingBike" type="number" min="0" max="240" step="5" value="25">
-            </label>
-            <label class="duration-field">
-              <span>Car</span>
-              <input id="durationCar" name="durationCar" type="number" min="0" max="240" step="5" value="35">
-            </label>
+        <div class="stack">
+          <label class="row">
+            <span>Baseline</span>
+            <input id="baselineDuration" name="baselineDuration" type="number" min="0" max="180" step="5" value="20" inputmode="numeric">
+          </label>
+
+          <div class="row hygiene">
+            <input id="showerEnabled" name="showerEnabled" type="checkbox" checked>
+            <label class="when-on" for="showerEnabled">Shower</label>
+            <label class="when-off" for="showerEnabled">Wash</label>
+            <input class="when-on" id="showerDuration" name="showerDuration" type="number" min="0" max="180" step="5" value="15" inputmode="numeric">
+            <input class="when-off" id="washingDuration" name="washingDuration" type="number" min="0" max="180" step="5" value="10" inputmode="numeric">
           </div>
-        </section>
+
+          <div class="row">
+            <input id="shavingEnabled" name="shavingEnabled" type="checkbox">
+            <label for="shavingEnabled">Shaving</label>
+            <input id="shavingDuration" name="shavingDuration" type="number" min="0" max="180" step="5" value="5" inputmode="numeric">
+          </div>
+
+          <div class="row">
+            <input id="breakfastEnabled" name="breakfastEnabled" type="checkbox" checked>
+            <label for="breakfastEnabled">Breakfast</label>
+            <input id="breakfastDuration" name="breakfastDuration" type="number" min="0" max="180" step="5" value="20" inputmode="numeric">
+          </div>
+        </div>
+
+        <fieldset class="segmented" aria-label="Transport mode">
+          <label>
+            <input type="radio" name="transportMode" value="ebike" checked>
+            <span>E-bike</span>
+          </label>
+          <label>
+            <input type="radio" name="transportMode" value="racingBike">
+            <span>Racing</span>
+          </label>
+          <label>
+            <input type="radio" name="transportMode" value="car">
+            <span>Car</span>
+          </label>
+        </fieldset>
+
+        <div class="transport-times">
+          <label>E-bike<input id="durationEbike" name="durationEbike" type="number" min="0" max="240" step="5" value="30" inputmode="numeric"></label>
+          <label>Racing<input id="durationRacingBike" name="durationRacingBike" type="number" min="0" max="240" step="5" value="25" inputmode="numeric"></label>
+          <label>Car<input id="durationCar" name="durationCar" type="number" min="0" max="240" step="5" value="35" inputmode="numeric"></label>
+        </div>
+
+        <dialog id="scheduleDialog">
+          <div class="dialog-head">
+            <strong>Arrive by</strong>
+            <button id="closeSettings" type="button">Done</button>
+          </div>
+          <table class="schedule-table">
+            <thead>
+              <tr><th></th><th>Regular</th><th>Vacation</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Mon</th><td><input name="regularMonday" type="time" step="300" value="09:00"></td><td><input name="vacationMonday" type="time" step="300" value="09:30"></td></tr>
+              <tr><th>Tue</th><td><input name="regularTuesday" type="time" step="300" value="09:00"></td><td><input name="vacationTuesday" type="time" step="300" value="09:30"></td></tr>
+              <tr><th>Wed</th><td><input name="regularWednesday" type="time" step="300" value="09:00"></td><td><input name="vacationWednesday" type="time" step="300" value="09:30"></td></tr>
+              <tr><th>Thu</th><td><input name="regularThursday" type="time" step="300" value="09:00"></td><td><input name="vacationThursday" type="time" step="300" value="09:30"></td></tr>
+              <tr><th>Fri</th><td><input name="regularFriday" type="time" step="300" value="09:00"></td><td><input name="vacationFriday" type="time" step="300" value="09:30"></td></tr>
+            </tbody>
+          </table>
+        </dialog>
       </form>
     </main>
 
-    <script src="app.js?v=4"></script>
+    <script src="app.js?v=5"></script>
   </body>
 </html>

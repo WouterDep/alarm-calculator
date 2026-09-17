@@ -45,18 +45,15 @@ http://127.0.0.1:4173/
 
 ## Settings
 
-- Target date
-- Regular/school vacation week toggle
-- Regular week ETA for each day
-- School vacation week ETA for each day
-- Shower toggle and duration
+The alarm is always for the next weekday morning. Friday night plans Monday.
+
+- Regular / vacation week toggle
+- Weekday arrival times (Mon–Fri) behind the settings button
+- Baseline delay (getting up, toilet, teeth, clothes)
+- Shower duration, or a wash duration when shower is off
 - Shaving toggle and duration
 - Breakfast toggle and duration
 - Transport mode: e-bike, racing bike, or car
 - Travel duration for each transport mode
 
 ETA fields and duration fields use five-minute increments.
-
-## School Vacation Calendar
-
-The app currently hard-codes the Flemish Community school calendar published by Vlaanderen.be for 2025-2026 through 2029-2030, including the listed school vacation periods and school-free days. Belgium has different school calendars in the Flemish, French, and German-speaking communities, so swap the dates in `app.js` if you need another community.
